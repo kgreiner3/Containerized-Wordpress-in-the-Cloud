@@ -68,7 +68,7 @@ jobs:
         with:
           task-definition: ecs-task-definition.json
           container-name: 'Wordpress'
-          image: $ECR_REGISTRY/$CONTAINER_NAME:${{ steps.extract_branch.outputs.branch }}
+          image: '603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:master'
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
