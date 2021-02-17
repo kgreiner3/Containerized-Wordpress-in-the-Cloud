@@ -61,7 +61,7 @@ jobs:
         run:  docker tag $ECR_REPOSITORY:latest $ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
 
       - name: Push to ECR
-        run:  docker push $ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
+        run:  docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
