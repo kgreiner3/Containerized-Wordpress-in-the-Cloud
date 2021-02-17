@@ -25,8 +25,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
-      CONTAINER_NAME: 'alpine-apache-wordpress'
+      CONTAINER_NAME: 'Wordpress'
       ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+      ECR_REPOSITORY: 'alpine-apache-wordpress'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -54,21 +55,21 @@ jobs:
         id: build-image
         working-directory: Wordpress/apache
         run: 
-          docker build -t $CONTAINER_NAME .
+          docker build -t $ECR_REPOSITORY .
 
       - name: Docker tag
-        run:  docker tag $CONTAINER_NAME:latest $ECR_REGISTRY/$CONTAINER_NAME:${{ steps.extract_branch.outputs.branch }}
+        run:  docker tag $ECR_REPOSITORY:latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
 
       - name: Push to ECR
-        run:  docker push $ECR_REGISTRY/$CONTAINER_NAME:${{ steps.extract_branch.outputs.branch }}
+        run:  docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ecs-task-definition.json
-          container-name: 'Wordpress'
-          image: '603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:master'
+          container-name: $CONTAINER_NAME
+          image: '$ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}'
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
