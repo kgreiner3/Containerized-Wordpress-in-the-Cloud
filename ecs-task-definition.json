@@ -1,250 +1,118 @@
 {
-  "family": "",
-  "taskRoleArn": "",
-  "executionRoleArn": "",
-  "networkMode": "awsvpc",
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionExecutionR-INP1L18EGQ0S",
   "containerDefinitions": [
     {
-      "name": "",
-      "image": "",
-      "repositoryCredentials": {
-        "credentialsParameter": ""
+      "dnsSearchDomains": [],
+      "environmentFiles": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "Dev-wordpress-kg-ecs-construct-TaskDefinitionWordpressLogGroupBA585B3F-EkdPdiv1wsVN",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "container"
+        }
       },
-      "cpu": 0,
-      "memory": 0,
-      "memoryReservation": 0,
-      "links": [
-        ""
-      ],
+      "entryPoint": [],
       "portMappings": [
         {
-          "containerPort": 0,
-          "hostPort": 0,
-          "protocol": "tcp"
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
         }
       ],
-      "essential": true,
-      "entryPoint": [
-        ""
-      ],
-      "command": [
-        ""
-      ],
+      "command": [],
+      "linuxParameters": null,
+      "cpu": 0,
       "environment": [
         {
-          "name": "",
-          "value": ""
+          "name": "TROUBLESHOOTING_MODE_ENABLED",
+          "value": "true"
         }
       ],
-      "environmentFiles": [
-        {
-          "value": "",
-          "type": "s3"
-        }
-      ],
+      "resourceRequirements": null,
+      "ulimits": null,
+      "dnsServers": [],
       "mountPoints": [
         {
-          "sourceVolume": "",
-          "containerPath": "",
-          "readOnly": true
+          "readOnly": false,
+          "containerPath": "/var/www/localhost/htdocs/wp-content",
+          "sourceVolume": "efs-wp-content"
         }
       ],
-      "volumesFrom": [
-        {
-          "sourceContainer": "",
-          "readOnly": true
-        }
-      ],
-      "linuxParameters": {
-        "capabilities": {
-          "add": [
-            ""
-          ],
-          "drop": [
-            ""
-          ]
-        },
-        "devices": [
-          {
-            "hostPath": "",
-            "containerPath": "",
-            "permissions": [
-              "mknod"
-            ]
-          }
-        ],
-        "initProcessEnabled": true,
-        "sharedMemorySize": 0,
-        "tmpfs": [
-          {
-            "containerPath": "",
-            "size": 0,
-            "mountOptions": [
-              ""
-            ]
-          }
-        ],
-        "maxSwap": 0,
-        "swappiness": 0
-      },
+      "workingDirectory": null,
       "secrets": [
         {
-          "name": "",
-          "valueFrom": ""
-        }
-      ],
-      "dependsOn": [
-        {
-          "containerName": "",
-          "condition": "START"
-        }
-      ],
-      "startTimeout": 0,
-      "stopTimeout": 0,
-      "hostname": "",
-      "user": "",
-      "workingDirectory": "",
-      "disableNetworking": true,
-      "privileged": true,
-      "readonlyRootFilesystem": true,
-      "dnsServers": [
-        ""
-      ],
-      "dnsSearchDomains": [
-        ""
-      ],
-      "extraHosts": [
-        {
-          "hostname": "",
-          "ipAddress": ""
-        }
-      ],
-      "dockerSecurityOptions": [
-        ""
-      ],
-      "interactive": true,
-      "pseudoTerminal": true,
-      "dockerLabels": {
-        "KeyName": ""
-      },
-      "ulimits": [
-        {
-          "name": "sigpending",
-          "softLimit": 0,
-          "hardLimit": 0
-        }
-      ],
-      "logConfiguration": {
-        "logDriver": "json-file",
-        "options": {
-          "KeyName": ""
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:host::",
+          "name": "DBHOST"
         },
-        "secretOptions": [
-          {
-            "name": "",
-            "valueFrom": ""
-          }
-        ]
-      },
-      "healthCheck": {
-        "command": [
-          ""
-        ],
-        "interval": 0,
-        "timeout": 0,
-        "retries": 0,
-        "startPeriod": 0
-      },
-      "systemControls": [
         {
-          "namespace": "",
-          "value": ""
-        }
-      ],
-      "resourceRequirements": [
-        {
-          "value": "",
-          "type": "InferenceAccelerator"
-        }
-      ],
-      "firelensConfiguration": {
-        "type": "fluentd",
-        "options": {
-          "KeyName": ""
-        }
-      }
-    }
-  ],
-  "volumes": [
-    {
-      "name": "",
-      "host": {
-        "sourcePath": ""
-      },
-      "dockerVolumeConfiguration": {
-        "scope": "shared",
-        "autoprovision": true,
-        "driver": "",
-        "driverOpts": {
-          "KeyName": ""
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:database_name::",
+          "name": "DBNAME"
         },
-        "labels": {
-          "KeyName": ""
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:username::",
+          "name": "DBUSER"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:password::",
+          "name": "DBUSERPASS"
         }
-      },
-      "efsVolumeConfiguration": {
-        "fileSystemId": "",
-        "rootDirectory": "",
-        "transitEncryption": "DISABLED",
-        "transitEncryptionPort": 0,
-        "authorizationConfig": {
-          "accessPointId": "",
-          "iam": "ENABLED"
-        }
-      },
-      "fsxWindowsFileServerVolumeConfiguration": {
-        "fileSystemId": "",
-        "rootDirectory": "",
-        "authorizationConfig": {
-          "credentialsParameter": "",
-          "domain": ""
-        }
-      }
+      ],
+      "dockerSecurityOptions": [],
+      "memory": null,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:master",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": [],
+      "hostname": null,
+      "extraHosts": null,
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": null,
+      "systemControls": [],
+      "privileged": null,
+      "name": "Wordpress"
     }
   ],
-  "placementConstraints": [
-    {
-      "type": "memberOf",
-      "expression": ""
-    }
-  ],
+  "placementConstraints": [],
+  "memory": "1024",
+  "taskRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionTaskRoleFD-AZ1U9E768YFR",
+  "family": "DevwordpresskgecsconstructTaskDefinitionBE2C8FF6",
+  "pidMode": null,
   "requiresCompatibilities": [
     "FARGATE"
   ],
-  "cpu": "",
-  "memory": "",
-  "tags": [
+  "networkMode": "awsvpc",
+  "cpu": "512",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": [
     {
-      "key": "",
-      "value": ""
-    }
-  ],
-  "pidMode": "task",
-  "ipcMode": "task",
-  "proxyConfiguration": {
-    "type": "APPMESH",
-    "containerName": "",
-    "properties": [
-      {
-        "name": "",
-        "value": ""
-      }
-    ]
-  },
-  "inferenceAccelerators": [
-    {
-      "deviceName": "",
-      "deviceType": ""
+      "fsxWindowsFileServerVolumeConfiguration": null,
+      "efsVolumeConfiguration": {
+        "transitEncryptionPort": null,
+        "fileSystemId": "fs-b9a3814d",
+        "authorizationConfig": {
+          "iam": null,
+          "accessPointId": "fsap-08bb49ff976849aba"
+        },
+        "transitEncryption": "ENABLED",
+        "rootDirectory": "/"
+      },
+      "name": "efs-wp-content",
+      "host": null,
+      "dockerVolumeConfiguration": null
     }
   ]
 }
