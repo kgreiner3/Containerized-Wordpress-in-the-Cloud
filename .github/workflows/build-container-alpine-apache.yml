@@ -55,13 +55,15 @@ jobs:
         working-directory: Wordpress/apache
         run: 
           docker build -t $CONTAINER_NAME .
-          echo "::set-output name=image::$ECR_REGISTRY/$CONTAINER_NAME:${{ steps.extract_branch.outputs.branch }}"
 
       - name: Docker tag
         run:  docker tag $CONTAINER_NAME:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/$CONTAINER_NAME:${{ steps.extract_branch.outputs.branch }}
 
       - name: Push to ECR
         run:  docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/$CONTAINER_NAME:${{ steps.extract_branch.outputs.branch }}
+
+      - name: Set Push output
+        run: echo "::set-output name=image::$ECR_REGISTRY/$CONTAINER_NAME:${{ steps.extract_branch.outputs.branch }}"
 
       - name: List files
         run: ls -R
