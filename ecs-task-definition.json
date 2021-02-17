@@ -65,7 +65,7 @@
         "memoryReservation": null,
         "volumesFrom": [],
         "stopTimeout": null,
-        "image": "603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:feature-cdkpipeline",
+        "image": "603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:master",
         "startTimeout": null,
         "firelensConfiguration": null,
         "dependsOn": null,
