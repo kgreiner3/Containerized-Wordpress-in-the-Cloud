@@ -58,7 +58,7 @@ jobs:
           docker build -t $ECR_REPOSITORY .
 
       - name: Docker tag
-        run:  docker tag $ECR_REPOSITORY:latest $ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
+        run:  docker tag $ECR_REPOSITORY:latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
 
       - name: Push to ECR
         run:  docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}
@@ -69,7 +69,7 @@ jobs:
         with:
           task-definition: ecs-task-definition.json
           container-name: 'Wordpress'
-          image: '$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}'
+          image: '${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/alpine-apache-wordpress:master'
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
