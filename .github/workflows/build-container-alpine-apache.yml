@@ -69,7 +69,7 @@ jobs:
         with:
           task-definition: ecs-task-definition.json
           container-name: $CONTAINER_NAME
-          image: '$ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}'
+          image: '$ECR_REGISTRY/$ECR_REPOSITORY:master'
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
