@@ -62,6 +62,7 @@ jobs:
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
+        working-directory: AWS-Deployment-Automation/
         with:
           task-definition: ecs-task-definition.json
           container-name: $CONTAINER_NAME
