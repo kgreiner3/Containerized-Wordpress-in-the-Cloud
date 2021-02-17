@@ -50,6 +50,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build Container
+        id: build-image
         working-directory: Wordpress/apache
         run: docker build -t $CONTAINER_NAME .
 
