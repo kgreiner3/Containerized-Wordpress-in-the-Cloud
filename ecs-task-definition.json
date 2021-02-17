@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionExecutionR-INP1L18EGQ0S",
+  "executionRoleArn": "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionExecutionR-INP1L18EGQ0S",
   "containerDefinitions": [
     {
       "dnsSearchDomains": [],
@@ -44,19 +44,19 @@
       "workingDirectory": null,
       "secrets": [
         {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:host::",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:host::",
           "name": "DBHOST"
         },
         {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:database_name::",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:database_name::",
           "name": "DBNAME"
         },
         {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:username::",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:username::",
           "name": "DBUSER"
         },
         {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:password::",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:password::",
           "name": "DBUSERPASS"
         }
       ],
@@ -65,7 +65,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:master",
+      "image": "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:${{ steps.extract_branch.outputs.branch }}",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -87,12 +87,12 @@
   ],
   "placementConstraints": [],
   "memory": "1024",
-  "taskRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionTaskRoleFD-AZ1U9E768YFR",
+  "taskRoleArn": "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionTaskRoleFD-AZ1U9E768YFR",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:603778680666:task-definition/DevwordpresskgecsconstructTaskDefinitionBE2C8FF6:3",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:task-definition/DevwordpresskgecsconstructTaskDefinitionBE2C8FF6:3",
   "family": "DevwordpresskgecsconstructTaskDefinitionBE2C8FF6",
   "requiresAttributes": [
     {
