@@ -68,8 +68,8 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ecs-task-definition.json
-          container-name: $CONTAINER_NAME
-          image: '$ECR_REGISTRY/$ECR_REPOSITORY:master'
+          container-name: 'Wordpress'
+          image: '$ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.extract_branch.outputs.branch }}'
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
