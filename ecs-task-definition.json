@@ -1,205 +1,205 @@
 {
-    "ipcMode": null,
-    "executionRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionExecutionR-INP1L18EGQ0S",
-    "containerDefinitions": [
-      {
-        "dnsSearchDomains": [],
-        "environmentFiles": null,
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "secretOptions": null,
-          "options": {
-            "awslogs-group": "Dev-wordpress-kg-ecs-construct-TaskDefinitionWordpressLogGroupBA585B3F-EkdPdiv1wsVN",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "container"
-          }
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionExecutionR-INP1L18EGQ0S",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": [],
+      "environmentFiles": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "Dev-wordpress-kg-ecs-construct-TaskDefinitionWordpressLogGroupBA585B3F-EkdPdiv1wsVN",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "container"
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "command": [],
+      "linuxParameters": null,
+      "cpu": 0,
+      "environment": [
+        {
+          "name": "TROUBLESHOOTING_MODE_ENABLED",
+          "value": "true"
+        }
+      ],
+      "resourceRequirements": null,
+      "ulimits": null,
+      "dnsServers": [],
+      "mountPoints": [
+        {
+          "readOnly": false,
+          "containerPath": "/var/www/localhost/htdocs/wp-content",
+          "sourceVolume": "efs-wp-content"
+        }
+      ],
+      "workingDirectory": null,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:host::",
+          "name": "DBHOST"
         },
-        "entryPoint": [],
-        "portMappings": [
-          {
-            "hostPort": 80,
-            "protocol": "tcp",
-            "containerPort": 80
-          }
-        ],
-        "command": [],
-        "linuxParameters": null,
-        "cpu": 0,
-        "environment": [
-          {
-            "name": "TROUBLESHOOTING_MODE_ENABLED",
-            "value": "true"
-          }
-        ],
-        "resourceRequirements": null,
-        "ulimits": null,
-        "dnsServers": [],
-        "mountPoints": [
-          {
-            "readOnly": false,
-            "containerPath": "/var/www/localhost/htdocs/wp-content",
-            "sourceVolume": "efs-wp-content"
-          }
-        ],
-        "workingDirectory": null,
-        "secrets": [
-          {
-            "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:host::",
-            "name": "DBHOST"
-          },
-          {
-            "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:database_name::",
-            "name": "DBNAME"
-          },
-          {
-            "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:username::",
-            "name": "DBUSER"
-          },
-          {
-            "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:password::",
-            "name": "DBUSERPASS"
-          }
-        ],
-        "dockerSecurityOptions": [],
-        "memory": null,
-        "memoryReservation": null,
-        "volumesFrom": [],
-        "stopTimeout": null,
-        "image": "603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:master",
-        "startTimeout": null,
-        "firelensConfiguration": null,
-        "dependsOn": null,
-        "disableNetworking": null,
-        "interactive": null,
-        "healthCheck": null,
-        "essential": true,
-        "links": [],
-        "hostname": null,
-        "extraHosts": null,
-        "pseudoTerminal": null,
-        "user": null,
-        "readonlyRootFilesystem": null,
-        "dockerLabels": null,
-        "systemControls": [],
-        "privileged": null,
-        "name": "Wordpress"
-      }
-    ],
-    "placementConstraints": [],
-    "memory": "1024",
-    "taskRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionTaskRoleFD-AZ1U9E768YFR",
-    "compatibilities": [
-      "EC2",
-      "FARGATE"
-    ],
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:603778680666:task-definition/DevwordpresskgecsconstructTaskDefinitionBE2C8FF6:2",
-    "family": "DevwordpresskgecsconstructTaskDefinitionBE2C8FF6",
-    "requiresAttributes": [
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.execution-role-awslogs"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.ecr-auth"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.task-iam-role"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.execution-role-ecr-pull"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.task-eni"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.efsAuth"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.secrets.asm.environment-variables"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.efs"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
-      }
-    ],
-    "pidMode": null,
-    "requiresCompatibilities": [
-      "FARGATE"
-    ],
-    "networkMode": "awsvpc",
-    "cpu": "512",
-    "revision": 2,
-    "status": "ACTIVE",
-    "inferenceAccelerators": null,
-    "proxyConfiguration": null,
-    "volumes": [
-      {
-        "fsxWindowsFileServerVolumeConfiguration": null,
-        "efsVolumeConfiguration": {
-          "transitEncryptionPort": null,
-          "fileSystemId": "fs-b9a3814d",
-          "authorizationConfig": {
-            "iam": null,
-            "accessPointId": "fsap-08bb49ff976849aba"
-          },
-          "transitEncryption": "ENABLED",
-          "rootDirectory": "/"
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:database_name::",
+          "name": "DBNAME"
         },
-        "name": "efs-wp-content",
-        "host": null,
-        "dockerVolumeConfiguration": null
-      }
-    ]
-  }
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:username::",
+          "name": "DBUSER"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:603778680666:secret:WordpressDbConnectionSecret-gyNNhqKAYCXK-HdYYRl:password::",
+          "name": "DBUSERPASS"
+        }
+      ],
+      "dockerSecurityOptions": [],
+      "memory": null,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "603778680666.dkr.ecr.us-east-1.amazonaws.com/alpine-apache-wordpress:master",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": [],
+      "hostname": null,
+      "extraHosts": null,
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": null,
+      "systemControls": [],
+      "privileged": null,
+      "name": "Wordpress"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "1024",
+  "taskRoleArn": "arn:aws:iam::603778680666:role/Dev-wordpress-kg-ecs-cons-TaskDefinitionTaskRoleFD-AZ1U9E768YFR",
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:603778680666:task-definition/DevwordpresskgecsconstructTaskDefinitionBE2C8FF6:3",
+  "family": "DevwordpresskgecsconstructTaskDefinitionBE2C8FF6",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.efsAuth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.secrets.asm.environment-variables"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.efs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
+    }
+  ],
+  "pidMode": null,
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "512",
+  "revision": 3,
+  "status": "ACTIVE",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": [
+    {
+      "fsxWindowsFileServerVolumeConfiguration": null,
+      "efsVolumeConfiguration": {
+        "transitEncryptionPort": null,
+        "fileSystemId": "fs-b9a3814d",
+        "authorizationConfig": {
+          "iam": null,
+          "accessPointId": "fsap-08bb49ff976849aba"
+        },
+        "transitEncryption": "ENABLED",
+        "rootDirectory": "/"
+      },
+      "name": "efs-wp-content",
+      "host": null,
+      "dockerVolumeConfiguration": null
+    }
+  ]
+}
